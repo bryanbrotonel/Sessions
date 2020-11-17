@@ -8,7 +8,9 @@ Sessions is a pomodoro app built for Android. The pomodoro technique is a widely
 
 Bryan Brotonel  
 Danny Nguyen  
-Nimesh Widanage  
+Nimesh Widanage
+
+Git test
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
