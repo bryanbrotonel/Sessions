@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Sessions</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_timer">Timer</string>
+    <string name="title_usage">Usage</string>
+    <string name="title_settings">Settings</string>
 </resources>

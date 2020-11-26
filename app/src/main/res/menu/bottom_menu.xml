@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/nav_timer"
+        android:enabled="true"
+        android:title="@string/title_timer"
+        android:icon="@drawable/ic_timer"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:id="@+id/nav_usage"
+        android:enabled="true"
+        android:title="@string/title_usage"
+        android:icon="@drawable/ic_insights"
+        app:showAsAction="ifRoom"
+        />
+
+
+    <item
+        android:id="@+id/nav_settings"
+        android:enabled="true"
+        android:title="@string/title_settings"
+        android:icon="@drawable/ic_settings"
+        app:showAsAction="ifRoom"
+        />
+
+</menu>
