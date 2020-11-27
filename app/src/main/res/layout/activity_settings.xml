@@ -9,16 +9,146 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <TextView
             android:id="@+id/nav_settings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="30dp"
             android:textColor="@color/black"
-            android:text="@string/title_settings"
-            />
+            android:text="@string/title_settings"/>
+
+        <TableLayout
+            android:layout_height="wrap_content"
+            android:layout_width="230dp"
+            android:layout_marginTop="125dp"
+            android:layout_gravity="center_horizontal">
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Sessions"
+                    android:textSize="30sp"
+                    android:textStyle="bold"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <RadioGroup
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="20sp">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 20 Minutes"
+                        android:textSize="15sp"/>
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 30 Minutes"
+                        android:textSize="15sp"/>
+
+                </RadioGroup>
+
+                <RadioGroup
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="20sp">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 40 Minutes"
+                        android:textSize="15sp"/>
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 50 Minutes"
+                        android:textSize="15sp"/>
+
+                </RadioGroup>
+
+            </TableRow>
+
+        </TableLayout>
+
+        <TableLayout
+            android:layout_height="wrap_content"
+            android:layout_width="230dp"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center_horizontal">
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Breaks"
+                    android:textSize="30sp"
+                    android:textStyle="bold"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <RadioGroup
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="20sp">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 5 Minutes"
+                        android:textSize="15sp"/>
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 10 Minutes"
+                        android:textSize="15sp"/>
+
+                </RadioGroup>
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 15 Minutes"
+                        android:textSize="15sp" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 20 Minutes"
+                        android:textSize="15sp" />
+
+                </RadioGroup>
+
+            </TableRow>
+
+        </TableLayout>
+
     </LinearLayout>
 
     <include
