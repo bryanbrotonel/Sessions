@@ -7,6 +7,7 @@ public class Usage extends Container {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     // Returns layout ID to Container Class
