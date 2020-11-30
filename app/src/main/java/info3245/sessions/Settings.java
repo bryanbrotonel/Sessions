@@ -15,7 +15,7 @@ public class Settings extends Container{
     private static final String settingsPrefs = "Settings_Prefs" ;
 
     // Settings keys;
-    private static final String sessionsKey = "sessionsKey";
+    public static final String sessionsKey = "sessionsKey";
     private static final String goalKey = "goalKey";
     private static final String shortBreakKey = "shortBreakKey";
     private static final String longBreakKey = "longBreakKey";
@@ -37,7 +37,7 @@ public class Settings extends Container{
     private int shrtBrkTimeBtnDef = R.id.short_Brk2M;
     private int lngBrkTimeBtnDef = R.id.long_Brk20M;
 
-    // Vlues for settings
+    // Values for settings
     private long snTime = snTimeDef;
     private long goalTime = goalTimeDef;
     private long shrtBrkTime = shrtBrkTimeDef;
@@ -199,7 +199,7 @@ public class Settings extends Container{
         }
     }
 
-    private long getSettingsData(String key, long defaultVal) {
+    public long getSettingsData(String key, long defaultVal) {
 
         return sharedPref.getLong(key, defaultVal);
     }
