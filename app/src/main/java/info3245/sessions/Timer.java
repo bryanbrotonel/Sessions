@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -95,7 +96,6 @@ public class Timer extends Container {
                 startingTime = focusTimeStart;
                 resetTimer();
                 sessionCount = 0;
-
             }
         });
         updateCountDownText();
@@ -134,8 +134,6 @@ public class Timer extends Container {
 
             @Override
             public void onFinish() {
-
-
                 // Determine which timer type and setting the Starting time when finished
                 if(mTimerType.getText().toString().equals("Focus"))
                 {
@@ -183,8 +181,9 @@ public class Timer extends Container {
         if (mTimerRunning) {
             pauseTimer();
         }
+        Log.d("resetTimer", String.valueOf(startingTime));
 
-        timeRemaining = startingTime;
+        timeRemaining = focusTimeStart;
         updateCountDownText();
 
     }
@@ -204,6 +203,9 @@ public class Timer extends Container {
     private void loadData()
     {
         focusTimeStart = startingTime = convertTime(getSettingsData(sessionsKey, snTimeDef));
+//        focusTimeStart = startingTime = convertTime((long) 1);
+        Log.d("loadData", String.valueOf(startingTime));
+
         shortBreakTimeStart = convertTime(getSettingsData(shortBreakKey, shrtBrkTimeDef));
         longBreakTimeStart = convertTime(getSettingsData(longBreakKey, lngBrkTimeDef));
     }
@@ -227,7 +229,10 @@ public class Timer extends Container {
 
         SharedPreferences prefs = getSharedPreferences(timerPrefs, MODE_PRIVATE);
 
-        startingTime = prefs.getLong("sessionTime", focusTimeStart);
+        startingTime = prefs.getLong("sessionTime", snTimeDef);
+
+        Log.d("onStart", String.valueOf(startingTime));
+
         sessionCount = prefs.getInt("sessionCount", 0);
 
         timeRemaining = prefs.getLong("sessionTime", focusTimeStart);
