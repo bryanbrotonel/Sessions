@@ -1,11 +1,18 @@
 package info3245.sessions;
 
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class Timer extends Container {
@@ -41,11 +48,12 @@ public class Timer extends Container {
         mFocus = findViewById(R.id.focusButton);
         mBreak = findViewById(R.id.breakButton);
 
+        createNotificationChannel();
+
         // When play button is press, Timer clicks down or pause
         mPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 
                 if(mTimerRunning){
                     pauseTimer();
@@ -119,6 +127,16 @@ public class Timer extends Container {
         //used for background calculation
         mCurrentTime = System.currentTimeMillis() + timeRemaining;
 
+        Toast.makeText(Timer.this, "Your time Period has begun!",
+                Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(Timer.this, ReminderBroadcast.class);
+        PendingIntent  pendingIntent = PendingIntent.getBroadcast(Timer.this,
+                0, intent, 0);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, mCurrentTime, pendingIntent);
+
         //Countdown Class is used to do the timer countdown
         countDownTimer = new CountDownTimer(timeRemaining,1000) {
             @Override
@@ -173,6 +191,21 @@ public class Timer extends Container {
         String timeLeftFormatted = String.format("%02d:%02d", min, sec);
         mTextViewCountDown.setText(timeLeftFormatted);
 
+    }
+
+    private void createNotificationChannel()
+    {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+        {
+            CharSequence name = "PomodoroReminderChannel";
+            String description = "Channel for Pomodor Reminder";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("notifyPomodoro", name, importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 
 
