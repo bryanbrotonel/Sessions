@@ -16,6 +16,8 @@ public abstract class Container extends AppCompatActivity implements BottomNavig
 
     protected BottomNavigationView navigationView;
 
+    private long sessionTime, breakTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,11 +25,14 @@ public abstract class Container extends AppCompatActivity implements BottomNavig
 
         navigationView = (BottomNavigationView) findViewById(R.id.navigation);
         navigationView.setOnNavigationItemSelectedListener(this);
+
+        sessionTime = 3000;
     }
 
     // Updates navbar state on start
     @Override
-    protected void onStart() {
+    protected void onStart()
+    {
         super.onStart();
         updateNavigationBarState();
     }
@@ -40,18 +45,29 @@ public abstract class Container extends AppCompatActivity implements BottomNavig
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item)
+    {
+
         navigationView.postDelayed(() -> {
             int itemId = item.getItemId();
             if (itemId == R.id.nav_usage) {
                 startActivity(new Intent(this, Usage.class));
                 Log.d("nav_usage", String.valueOf(item.getItemId()));
             } else if (itemId == R.id.nav_timer) {
-                startActivity(new Intent(this, Timer.class));
+                //data = getSettingsData();
+
+                Bundle b = new Bundle();
+                b.putLong("snsTime", sessionTime);
+                Intent intent = new Intent(Container.this, Timer.class);
+                intent.putExtra("timeData", b);
+                startActivity(intent);
+
                 Log.d("nav_timer", String.valueOf(item.getItemId()));
+                //setContentView(R.layout.activity_timer);
             } else if (itemId == R.id.nav_settings) {
                 startActivity(new Intent(this, Settings.class));
                 Log.d("nav_settings", String.valueOf(item.getItemId()));
+                //setContentView(R.layout.activity_settings);
             }
             finish();
         }, 300);
@@ -74,4 +90,16 @@ public abstract class Container extends AppCompatActivity implements BottomNavig
 
     //Which menu item selected and change the state of that menu item
     abstract int getBottomNavigationMenuItemId();
+
+    public void setSessionTime(long l)
+    {
+        sessionTime = l;
+    }
+
+    public long getSessionTime()
+    {
+        return  sessionTime;
+    }
+
+
 }

@@ -1,5 +1,7 @@
 package info3245.sessions;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -11,13 +13,15 @@ public class Timer extends Container {
 
     //Timer Code
     private  long startingTime;
-    private  long focusTimeStart = 6000;
+    private  long focusTimeStart;
     private  long breakTimeStart = 5000;
     private TextView mTextViewCountDown, mTimerType;
     private Button mPlay,mReset, mRestart;
     private CountDownTimer countDownTimer;
     private boolean mTimerRunning;
     private long timeRemaining;
+    private int sessionTime;
+    private int breakTime;
 
 
 //Timer Code
@@ -27,9 +31,13 @@ public class Timer extends Container {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //setContentView(R.layout.activity_timer);
 
         //Timer Code
+        loadData();
+
         startingTime = focusTimeStart;
+
         timeRemaining = startingTime;
         mTextViewCountDown = findViewById(R.id.timer);
         mTimerType = findViewById(R.id.timerType);
@@ -94,7 +102,6 @@ public class Timer extends Container {
     int getBottomNavigationMenuItemId() {
         return R.id.nav_timer;
     }
-
 
     //Timer Code Methods
 
@@ -169,6 +176,35 @@ public class Timer extends Container {
 
     }
 
+    private void loadData()
+    {
+        focusTimeStart = getSessionTime();
+        Intent intent = getIntent();
+        Bundle bun = intent.getBundleExtra("timeData");
+        startingTime = bun.getLong("snsTime");
+    }
+
 //Timer Code*/
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        loadData();
+
+        //SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        //startingTime = 1000 * prefs.getLong("sessionTime", timeRemaining);
+        //updateCountDownText();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putLong("sessionTime", startingTime);
+        editor.apply();
+    }
 }
