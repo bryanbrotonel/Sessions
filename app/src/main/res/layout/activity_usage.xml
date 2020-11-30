@@ -103,11 +103,11 @@
             </TableLayout>
 
             <TextView
-                android:id="@+id/header_history"
+                android:id="@+id/header_usage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                android:text="@string/heading_history"
+                android:text="@string/heading_usage"
                 android:textColor="@color/black"
                 android:textSize="30sp" />
 
@@ -119,7 +119,7 @@
                 tools:context=".MainActivity">
 
                 <TextView
-                    android:id="@+id/history_date1"
+                    android:id="@+id/usage_date1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="November 13"
@@ -127,7 +127,7 @@
                     android:textColor="@color/black" />
 
                 <TableRow
-                    android:id="@+id/history_row1"
+                    android:id="@+id/usage_row1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal">
@@ -210,7 +210,7 @@
                 </TableRow>
 
                 <TextView
-                    android:id="@+id/history_date2"
+                    android:id="@+id/usage_date2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="November 14"
@@ -218,7 +218,7 @@
                     android:textColor="@color/black" />
 
                 <TableRow
-                    android:id="@+id/history_row2"
+                    android:id="@+id/usage_row2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal">
@@ -301,7 +301,7 @@
                 </TableRow>
 
                 <TextView
-                    android:id="@+id/history_date3"
+                    android:id="@+id/usage_date3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="November 15"
@@ -309,7 +309,7 @@
                     android:textColor="@color/black" />
 
                 <TableRow
-                    android:id="@+id/history_row3"
+                    android:id="@+id/usage_row3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal">

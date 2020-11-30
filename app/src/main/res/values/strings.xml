@@ -4,10 +4,11 @@
     <string name="title_timer">Timer</string>
     <string name="title_usage">Usage</string>
     <string name="title_settings">Settings</string>
-    <string name="heading_history">Last 3 Days</string>
+    <string name="heading_usage">Last 3 Days</string>
     <string name="header_usage">Today\'s Usage</string>
     <string name="header_sessions">Today\'s Sessions</string>
     <string name="caption_data">Data</string>
     <string name="caption_sessions">Sessions</string>
     <string name="caption_goal">Goal</string>
+    <string name="date_format">E, M d</string>
 </resources>
