@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 
@@ -30,7 +31,8 @@ public class Timer extends Container {
     private  long shortBreakTimeStart;
     private  long longBreakTimeStart;
     private TextView mTextViewCountDown, mTimerType;
-    private Button mPlay,mReset, mRestart;
+    private ImageButton mPlay,mReset;
+    private Button  mRestart;
     private CountDownTimer countDownTimer;
     private boolean mTimerRunning;
     private long timeRemaining;
@@ -160,11 +162,11 @@ public class Timer extends Container {
 
 
                 mTimerRunning = false;
-                mPlay.setText("Start");
+                mPlay.setImageResource(R.drawable.ic_playbutton);
             }
         }.start();
         mTimerRunning = true;
-        mPlay.setText("Pause");
+        mPlay.setImageResource(R.drawable.ic_pausebutton);
 
     }
 
@@ -173,7 +175,7 @@ public class Timer extends Container {
     {
         countDownTimer.cancel();
         mTimerRunning = false;
-        mPlay.setText("Start");
+        mPlay.setImageResource(R.drawable.ic_playbutton);
 
     }
 
@@ -243,6 +245,7 @@ public class Timer extends Container {
                 timeRemaining = 0;
                 mTimerRunning = false;
                 updateCountDownText();
+                mPlay.setImageResource(R.drawable.ic_playbutton);
             }
             else {
                 startTimer();

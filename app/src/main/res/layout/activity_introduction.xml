@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".Introduction">
+
+
+
+    <Button
+        android:id="@+id/skipButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Skip"
+        android:layout_marginTop="40sp"
+        android:layout_marginRight="30dp"
+        android:layout_gravity="top|right"
+         />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="307dp"
+        android:layout_height="228dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        app:srcCompat="@drawable/placeholder" />
+
+
+
+    <TextView
+        android:id="@+id/welcomeMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Session"
+        android:textSize="30sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10sp"
+
+      />
+
+
+    <Button
+        android:id="@+id/contButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="continue"
+        android:textSize="20sp"
+        android:layout_marginTop="50sp"
+        android:layout_marginRight="30dp"
+        android:layout_gravity="bottom|right"
+        />
+    <TableRow
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20sp"
+        android:layout_marginLeft="30dp"
+        android:layout_gravity="bottom|left"
+      >
+
+    <ImageView
+
+        android:background="@drawable/ic_button"
+        android:layout_width="20dp"
+        android:layout_height="20dp">
+    </ImageView>
+
+    <ImageView
+        android:background="@drawable/ic_button2"
+        android:layout_width="20dp"
+        android:layout_height="20dp">
+
+    </ImageView>
+    </TableRow>
+</LinearLayout>

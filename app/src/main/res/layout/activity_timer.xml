@@ -31,25 +31,38 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="00:00" />
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:layout_marginBottom="20sp"
+        >
 
-        <Button
+
+        <ImageButton
+
             android:id="@+id/playButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="start"
+            android:background="@drawable/ic_button"
+            android:layout_marginRight="20sp"
+            android:src="@drawable/ic_playbutton"
             />
-        <Button
+
+        <ImageButton
             android:id="@+id/resetButton"
+            android:background="@drawable/ic_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Reset"
+            android:src="@drawable/ic_restartbutton"
             />
+    </TableRow>
+
         <Button
             android:id="@+id/restartButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Restart Pomodoro"
-            />
+            android:text="Restart Pomodoro" />
 
 
     </LinearLayout>
