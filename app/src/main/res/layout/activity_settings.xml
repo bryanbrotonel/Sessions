@@ -21,129 +21,226 @@
 
         <TableLayout
             android:layout_height="wrap_content"
-            android:layout_width="230dp"
-            android:layout_marginTop="125dp"
+            android:layout_width="match_parent"
             android:layout_gravity="center_horizontal">
 
-            <TableRow
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            >
+
+            <RadioGroup
+                android:id="@+id/snsGroup"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent">
+                android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/heading_sessions"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
+                    android:textAlignment="center"
                     android:text="Sessions"
                     android:textSize="30sp"
                     android:textStyle="bold"/>
 
-            </TableRow>
-
-            <TableRow
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent">
-
-                <RadioGroup
+                <RadioButton
+                    android:id="@+id/sns20M"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:layout_marginTop="20sp">
+                    android:layout_gravity="center"
+                    android:text="20 mins"
+                    android:textSize="15sp"
+                    android:onClick="onRadioButtonClicked"/>
 
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=" 20 Minutes"
-                        android:textSize="15sp"/>
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=" 30 Minutes"
-                        android:textSize="15sp"/>
-
-                </RadioGroup>
-
-                <RadioGroup
+                <RadioButton
+                    android:id="@+id/sns30M"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:layout_marginTop="20sp">
+                    android:layout_gravity="center"
+                    android:text="30 mins"
+                    android:textSize="15sp"
+                    android:onClick="onRadioButtonClicked"/>
 
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=" 40 Minutes"
-                        android:textSize="15sp"/>
+                <RadioButton
+                    android:id="@+id/sns40M"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="40 mins"
+                    android:textSize="15sp"
+                    android:onClick="onRadioButtonClicked"/>
 
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=" 50 Minutes"
-                        android:textSize="15sp"/>
+                <RadioButton
+                    android:id="@+id/sns50M"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="50 mins"
+                    android:textSize="15sp"
+                    android:onClick="onRadioButtonClicked"/>
 
-                </RadioGroup>
+            </RadioGroup>
 
-            </TableRow>
-
-        </TableLayout>
-
-        <TableLayout
-            android:layout_height="wrap_content"
-            android:layout_width="230dp"
-            android:layout_marginTop="30dp"
-            android:layout_gravity="center_horizontal">
-
-            <TableRow
+            <RadioGroup
+                android:id="@+id/goalGroup"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent">
+                android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/heading_goal"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="Breaks"
+                    android:textAlignment="center"
+                    android:text="Goal"
                     android:textSize="30sp"
                     android:textStyle="bold"/>
 
-            </TableRow>
+                <RadioButton
+                    android:id="@+id/goal_4h"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="4 Hours"
+                    android:textSize="15sp"
+                    android:onClick="onRadioButtonClicked" />
 
-            <TableRow
+                <RadioButton
+                    android:id="@+id/goal_5h"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="5 Hours"
+                    android:textSize="15sp"
+                    android:onClick="onRadioButtonClicked"/>
+
+                <RadioButton
+                    android:id="@+id/goal_6h"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="6 Hours"
+                    android:textSize="15sp"
+                    android:onClick="onRadioButtonClicked"/>
+
+                <RadioButton
+                    android:id="@+id/goal_7h"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="7 Hours"
+                    android:textSize="15sp"
+                    android:onClick="onRadioButtonClicked"/>
+
+            </RadioGroup>
+
+        </TableRow>
+
+        <TableRow
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent">
+                android:layout_width="wrap_content"
+                >
 
                 <RadioGroup
-                    android:layout_height="wrap_content"
+                    android:id="@+id/short_BrkGroup"
                     android:layout_width="wrap_content"
-                    android:layout_marginTop="20sp">
+                    android:layout_height="wrap_content"
+                    >
+
+                    <TextView
+                        android:id="@+id/heading_short_Brk"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:textAlignment="center"
+                        android:text="Short Breaks"
+                        android:textSize="30sp"
+                        android:textStyle="bold"
+                        android:onClick="onRadioButtonClicked"/>
 
                     <RadioButton
-                        android:layout_width="wrap_content"
+                        android:id="@+id/short_Brk2M"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text=" 5 Minutes"
-                        android:textSize="15sp"/>
+                        android:text="2 mins"
+                        android:textSize="15sp"
+                        android:onClick="onRadioButtonClicked"/>
 
                     <RadioButton
-                        android:layout_width="wrap_content"
+                        android:id="@+id/short_Brk3M"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text=" 10 Minutes"
-                        android:textSize="15sp"/>
+                        android:text="3 mins"
+                        android:textSize="15sp"
+                        android:onClick="onRadioButtonClicked"/>
+
+                    <RadioButton
+                        android:id="@+id/short_Brk5M"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="5 mins"
+                        android:textSize="15sp"
+                        android:onClick="onRadioButtonClicked"/>
+
+                    <RadioButton
+                        android:id="@+id/short_Brk7M"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="7 mins"
+                        android:textSize="15sp"
+                        android:onClick="onRadioButtonClicked"/>
 
                 </RadioGroup>
 
                 <RadioGroup
+                    android:id="@+id/long_BrkGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20sp">
+                    >
+
+                    <TextView
+                        android:id="@+id/heading_long_breaks"
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:textAlignment="center"
+                        android:text="Long Breaks"
+                        android:textSize="30sp"
+                        android:textStyle="bold"
+                        android:onClick="onRadioButtonClicked"/>
 
                     <RadioButton
-                        android:layout_width="wrap_content"
+                        android:id="@+id/long_Brk20M"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text=" 15 Minutes"
-                        android:textSize="15sp" />
+                        android:text="20 mins"
+                        android:textSize="15sp"
+                        android:onClick="onRadioButtonClicked"/>
 
                     <RadioButton
-                        android:layout_width="wrap_content"
+                        android:id="@+id/long_Brk25M"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text=" 20 Minutes"
-                        android:textSize="15sp" />
+                        android:text="25 mins"
+                        android:textSize="15sp"
+                        android:onClick="onRadioButtonClicked"/>
 
-                </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/long_Brk30M"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="30 mins"
+                        android:textSize="15sp"
+                        android:onClick="onRadioButtonClicked"/>
+
+                    <RadioButton
+                        android:id="@+id/long_Brk35M"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="35 mins"
+                        android:textSize="15sp"
+                        android:onClick="onRadioButtonClicked"/>
+
+                    </RadioGroup>
 
             </TableRow>
 

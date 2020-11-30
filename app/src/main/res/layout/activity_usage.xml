@@ -1,25 +1,401 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginHorizontal="20sp"
     tools:context=".Usage">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-        <TextView
-            android:id="@+id/nav_usage"
+        android:layout_height="match_parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="30dp"
-            android:textColor="@color/black"
-            android:text="@string/title_usage"
-            />
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nav_usage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/title_usage"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="40dp" />
+
+            <TextView
+                android:id="@+id/header_greeting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:text="Hey, User"
+                android:textColor="@color/black"
+                android:textSize="30dp" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*"
+                tools:context=".MainActivity">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:id="@+id/data_todayUsage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/black"
+                            android:text="0"
+                            android:textSize="40dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/header_todayUsage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/data_todayUsage"
+                            android:text="@string/header_usage"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:id="@+id/data_todaySessions"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/black"
+                            android:text="0"
+                            android:textSize="40dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/header_todaySessions"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/data_todaySessions"
+                            android:text="@string/header_sessions"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    </RelativeLayout>
+
+                </TableRow>
+
+            </TableLayout>
+
+            <TextView
+                android:id="@+id/header_usage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:text="@string/heading_usage"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:stretchColumns="*"
+                tools:context=".MainActivity">
+
+                <TextView
+                    android:id="@+id/usage_date1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="November 13"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/black" />
+
+                <TableRow
+                    android:id="@+id/usage_row1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:id="@+id/usage_data1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="0"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <TextView
+                            android:id="@+id/usage_caption1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/usage_data1"
+                            android:layout_centerInParent="true"
+                            android:text="@string/caption_data"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:id="@+id/sessions_data1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="0"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <TextView
+                            android:id="@+id/sessions_caption1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/sessions_data1"
+                            android:layout_centerInParent="true"
+                            android:text="@string/caption_sessions"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:id="@+id/goal_data1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="0"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <TextView
+                            android:id="@+id/goal_caption1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/goal_data1"
+                            android:layout_centerInParent="true"
+                            android:text="@string/caption_goal"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    </RelativeLayout>
+
+                </TableRow>
+
+                <TextView
+                    android:id="@+id/usage_date2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="November 14"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/black" />
+
+                <TableRow
+                    android:id="@+id/usage_row2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:id="@+id/usage_data2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="0"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <TextView
+                            android:id="@+id/usage_caption2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/usage_data2"
+                            android:layout_centerInParent="true"
+                            android:text="@string/caption_data"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:id="@+id/sessions_data2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="0"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <TextView
+                            android:id="@+id/sessions_caption2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/sessions_data2"
+                            android:layout_centerInParent="true"
+                            android:text="@string/caption_sessions"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:id="@+id/goal_data2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="0"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <TextView
+                            android:id="@+id/goal_caption2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/goal_data2"
+                            android:layout_centerInParent="true"
+                            android:text="@string/caption_goal"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    </RelativeLayout>
+
+                </TableRow>
+
+                <TextView
+                    android:id="@+id/usage_date3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="November 15"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/black" />
+
+                <TableRow
+                    android:id="@+id/usage_row3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:id="@+id/usage_data3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="0"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <TextView
+                            android:id="@+id/usage_caption3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/usage_data3"
+                            android:layout_centerInParent="true"
+                            android:text="@string/caption_data"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:id="@+id/sessions_data3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="0"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <TextView
+                            android:id="@+id/sessions_caption3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/sessions_data3"
+                            android:layout_centerInParent="true"
+                            android:text="@string/caption_sessions"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:id="@+id/goal_data3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="0"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <TextView
+                            android:id="@+id/goal_caption3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/goal_data3"
+                            android:layout_centerInParent="true"
+                            android:text="@string/caption_goal"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    </RelativeLayout>
+
+                </TableRow>
+
+            </TableLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <include
         layout="@menu/item_bottom_navigation"
