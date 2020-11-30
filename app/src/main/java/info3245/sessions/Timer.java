@@ -164,11 +164,7 @@ public class Timer extends Container {
             }
         }.start();
         mTimerRunning = true;
-
-        if (timeRemaining <= 0) {
-            mTimerRunning = false;
-            mPlay.setText("Pause");
-        }
+        mPlay.setText("Pause");
 
     }
 
@@ -231,7 +227,7 @@ public class Timer extends Container {
 
         SharedPreferences prefs = getSharedPreferences(timerPrefs, MODE_PRIVATE);
 
-        startingTime = prefs.getLong("sessionTime", timeRemaining);
+        startingTime = prefs.getLong("sessionTime", focusTimeStart);
         sessionCount = prefs.getInt("sessionCount", 0);
 
         timeRemaining = prefs.getLong("sessionTime", focusTimeStart);
