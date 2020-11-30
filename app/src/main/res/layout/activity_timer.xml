@@ -21,7 +21,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Timer" />
+            android:text="Focus" />
         <TextView
             android:id="@+id/timer"
             android:textColor="@color/black"
@@ -45,16 +45,10 @@
             android:text="Reset"
             />
         <Button
-            android:id="@+id/focusButton"
+            android:id="@+id/restartButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Focus"
-            />
-        <Button
-            android:id="@+id/breakButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Break"
+            android:text="Restart Pomodoro"
             />
 
 
