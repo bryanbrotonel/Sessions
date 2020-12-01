@@ -49,6 +49,8 @@ public class Settings extends Container{
     private int shrtBrkTimeBtn = shrtBrkTimeBtnDef;
     private int lngBrkTimeBtn = lngBrkTimeBtnDef;
 
+
+    // Initializes settings data on Create
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -58,9 +60,9 @@ public class Settings extends Container{
 
         restoreSettingsData();
         displaySettingsData();
-        Log.d("Settings", String.valueOf(sharedPref.getAll()));
     }
 
+    // Saves data to shared pref on Pause
     @Override
     public void onPause() {
         super.onPause();
@@ -79,6 +81,7 @@ public class Settings extends Container{
         editor.apply();
     }
 
+    // Restores data from Shared Pref
     private void restoreSettingsData() {
 
         snTime = getSettingsData(sessionsKey, snTimeDef);
@@ -93,6 +96,7 @@ public class Settings extends Container{
 
     }
 
+    // Displays each setting in view
     private void displaySettingsData() {
         int[] settingsBtns = {snTimeBtn, goalTimeBtn, shrtBrkTimeBtn, lngBrkTimeBtn};
 
@@ -103,6 +107,7 @@ public class Settings extends Container{
     }
 
     public void onRadioButtonClicked(View view) {
+
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
 
@@ -199,11 +204,13 @@ public class Settings extends Container{
         }
     }
 
+    // Retrieves setting data from Shared pref
     public long getSettingsData(String key, long defaultVal) {
 
         return sharedPref.getLong(key, defaultVal);
     }
 
+    // Retrieves setting button ID from Shared pref
     private int getSettingsBtn(String key, int defaultVal) {
 
         return sharedPref.getInt(key, defaultVal);

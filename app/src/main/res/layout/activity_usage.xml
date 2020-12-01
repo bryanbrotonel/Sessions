@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,25 +15,25 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_margin="20dp"
-            android:paddingBottom="50dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="50dp">
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="35dp"
                 android:fontFamily="@font/notosans_regular"
                 android:text="@string/title_usage"
                 android:textColor="@color/black"
-                android:layout_marginBottom="35dp"
                 android:textSize="40dp"
                 android:textStyle="bold" />
 
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:stretchColumns="*"
                 android:layout_marginVertical="30dp"
+                android:stretchColumns="*"
                 tools:context=".MainActivity">
 
                 <TableRow
@@ -45,28 +44,26 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
                         android:layout_gravity="center"
-                        >
+                        android:orientation="horizontal">
 
                         <RelativeLayout
-                            android:layout_marginRight="20dp"
-                            android:background="@drawable/layout_bg"
-                            android:padding="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
-                            android:layout_gravity="center">
+                            android:layout_gravity="center"
+                            android:layout_marginRight="20dp"
+                            android:background="@drawable/layout_bg"
+                            android:padding="10dp">
 
                             <TextView
                                 android:id="@+id/data_todayUsage"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerHorizontal="true"
-                                android:textColor="@color/primaryLightColor"
                                 android:text="0"
-                                android:textSize="50dp"
-                                />
+                                android:textColor="@color/primaryLightColor"
+                                android:textSize="50dp" />
 
                             <TextView
                                 android:id="@+id/header_todayUsage"
@@ -79,22 +76,21 @@
                         </RelativeLayout>
 
                         <RelativeLayout
-                            android:padding="10dp"
-                            android:background="@drawable/layout_bg"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="2"
-                            android:layout_gravity="center">
+                            android:layout_gravity="center"
+                            android:background="@drawable/layout_bg"
+                            android:padding="10dp">
 
                             <TextView
                                 android:id="@+id/data_todaySessions"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerHorizontal="true"
-                                android:textColor="@color/primaryLightColor"
                                 android:text="0"
-                                android:textSize="50dp"
-                                />
+                                android:textColor="@color/primaryLightColor"
+                                android:textSize="50dp" />
 
                             <TextView
                                 android:id="@+id/header_todaySessions"
@@ -117,10 +113,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="30dp"
-                android:text="@string/heading_usage"
                 android:fontFamily="@font/notosans_regular"
-                android:textFontWeight="600"
+                android:text="@string/heading_usage"
                 android:textColor="@color/black"
+                android:textFontWeight="600"
                 android:textSize="30sp" />
 
             <TableLayout
@@ -132,12 +128,12 @@
 
                 <TableRow
                     android:id="@+id/usage_row1"
-                    android:background="@drawable/layout_bg"
-                    android:paddingVertical="20dp"
-                    android:layout_marginBottom="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal">
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/layout_bg"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="20dp">
 
                     <TextView
                         android:id="@+id/usage_date1"
@@ -162,9 +158,9 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:text="0"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="@color/secondaryColor"
-                            android:textFontWeight="700"
-                            android:textAppearance="?android:attr/textAppearanceLarge" />
+                            android:textFontWeight="700" />
 
                         <TextView
                             android:id="@+id/usage_caption1"
@@ -189,9 +185,9 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:text="0"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="@color/secondaryColor"
-                            android:textFontWeight="700"
-                            android:textAppearance="?android:attr/textAppearanceLarge" />
+                            android:textFontWeight="700" />
 
                         <TextView
                             android:id="@+id/sessions_caption1"
@@ -216,9 +212,9 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:text="0"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="@color/secondaryColor"
-                            android:textFontWeight="700"
-                            android:textAppearance="?android:attr/textAppearanceLarge" />
+                            android:textFontWeight="700" />
 
                         <TextView
                             android:id="@+id/goal_caption1"
@@ -235,23 +231,23 @@
 
                 <TableRow
                     android:id="@+id/usage_row2"
-                    android:paddingVertical="20dp"
-                    android:layout_marginBottom="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
                     android:background="@drawable/layout_bg"
-                    android:gravity="center_horizontal">
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="20dp">
 
                     <TextView
                         android:id="@+id/usage_date2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:fontFamily="@font/notosans_regular"
                         android:gravity="center"
                         android:text="November 14"
-                        android:textFontWeight="800"
-                        android:fontFamily="@font/notosans_regular"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textFontWeight="800" />
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -265,9 +261,9 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:text="0"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="@color/secondaryColor"
-                            android:textFontWeight="700"
-                            android:textAppearance="?android:attr/textAppearanceLarge" />
+                            android:textFontWeight="700" />
 
                         <TextView
                             android:id="@+id/usage_caption2"
@@ -292,9 +288,9 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:text="0"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="@color/secondaryColor"
-                            android:textFontWeight="700"
-                            android:textAppearance="?android:attr/textAppearanceLarge" />
+                            android:textFontWeight="700" />
 
                         <TextView
                             android:id="@+id/sessions_caption2"
@@ -319,9 +315,9 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:text="0"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="@color/secondaryColor"
-                            android:textFontWeight="700"
-                            android:textAppearance="?android:attr/textAppearanceLarge" />
+                            android:textFontWeight="700" />
 
                         <TextView
                             android:id="@+id/goal_caption2"
@@ -338,23 +334,23 @@
 
                 <TableRow
                     android:id="@+id/usage_row3"
-                    android:background="@drawable/layout_bg"
-                    android:paddingVertical="20dp"
-                    android:layout_marginBottom="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal">
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/layout_bg"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="20dp">
 
                     <TextView
                         android:id="@+id/usage_date3"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:fontFamily="@font/notosans_regular"
                         android:gravity="center"
                         android:text="November 15"
-                        android:textFontWeight="800"
-                        android:fontFamily="@font/notosans_regular"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textFontWeight="800" />
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -368,9 +364,9 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:text="0"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="@color/secondaryColor"
-                            android:textFontWeight="700"
-                            android:textAppearance="?android:attr/textAppearanceLarge" />
+                            android:textFontWeight="700" />
 
                         <TextView
                             android:id="@+id/usage_caption3"
@@ -395,9 +391,9 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:text="0"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="@color/secondaryColor"
-                            android:textFontWeight="700"
-                            android:textAppearance="?android:attr/textAppearanceLarge" />
+                            android:textFontWeight="700" />
 
                         <TextView
                             android:id="@+id/sessions_caption3"
@@ -422,9 +418,9 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:text="0"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="@color/secondaryColor"
-                            android:textFontWeight="700"
-                            android:textAppearance="?android:attr/textAppearanceLarge" />
+                            android:textFontWeight="700" />
 
                         <TextView
                             android:id="@+id/goal_caption3"

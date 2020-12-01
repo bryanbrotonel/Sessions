@@ -28,4 +28,6 @@
     <string name="headingSettings_goal">Goal</string>
     <string name="headingSettings_shortBreaks">Short Breaks</string>
     <string name="headingSettings_longBreaks">Long Breaks</string>
+    <string name="quote_caption">One day we will be more creative, more productive, and yet more relaxed.</string>
+    <string name="quote_author">- Francesco Cirillo</string>
 </resources>
