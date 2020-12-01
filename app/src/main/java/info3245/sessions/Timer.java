@@ -113,6 +113,7 @@ public class Timer extends Container {
             public void onClick(View view) {
 
                 focus = true;
+                resetSessionsDisplay();
                 resetTimer();
             }
         });
@@ -126,7 +127,7 @@ public class Timer extends Container {
     private void startTimer()
     {
 
-        if (sessionCount == 0) {
+        if (sessionCount == 4) {
             resetSessionsDisplay();
         }
 
@@ -195,8 +196,6 @@ public class Timer extends Container {
             pauseTimer();
         }
 
-        resetSessionsDisplay();
-
         setText();
         setTime();
         updateCountDownText();
@@ -205,7 +204,7 @@ public class Timer extends Container {
 
     public void setTime() {
         startingTime = focus ? focusTimeStart :
-                sessions_Usage_Today % 4 == 0 ? longBreakTimeStart : shortBreakTimeStart;
+                sessionCount == 4 ? longBreakTimeStart : shortBreakTimeStart;
 
         timeRemaining = startingTime;
         updateCountDownText();
@@ -214,7 +213,7 @@ public class Timer extends Container {
 
     public void setText() {
         mTimerType.setText(focus ? "Lets focus right now." :
-                (sessions_Usage_Today % 4 == 0) ? "Take a long break. You deserve it." : "Take a quick break.");
+                sessionCount == 4 ? "Take a long break. You deserve it." : "Take a quick break.");
     }
 
     // converting time remaining in Times and seconds and displaying it
@@ -227,8 +226,10 @@ public class Timer extends Container {
         String timeLeftFormatted = String.format("%02d:%02d", min, sec);
         mTextViewCountDown.setText(timeLeftFormatted);
 
+        updateSessionsDisplay();
     }
 
+    // Resets session count display
     private void resetSessionsDisplay() {
 
         int[] dots = { R.id.session1,R.id.session2,R.id.session3,R.id.session4};
@@ -238,8 +239,11 @@ public class Timer extends Container {
             img.setImageResource(R.drawable.ic_blue_circle);
         }
 
+        sessionCount = 0;
+
     }
 
+    // Updates session count display
     private void updateSessionsDisplay() {
 
         int[] dots = { R.id.session1,R.id.session2,R.id.session3,R.id.session4};
@@ -268,7 +272,6 @@ public class Timer extends Container {
                     ImageView img = findViewById(dots[i]);
                     img.setImageResource(R.drawable.ic_yellow_circle);
                 }
-                sessionCount = 0;
                 break;
         }
     }
