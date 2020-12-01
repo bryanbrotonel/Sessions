@@ -38,6 +38,8 @@ public class Timer extends Container {
     private long mEndTime;
     public int sessionCount;
 
+    public boolean focus = true;
+
 //Timer Code
 
     @Override
@@ -93,9 +95,10 @@ public class Timer extends Container {
                     mTimerType.setText("Focus");
                 }
 
-                startingTime = focusTimeStart;
-                resetTimer();
                 sessionCount = 0;
+
+                focus = true;
+                resetTimer();
             }
         });
         updateCountDownText();
@@ -135,35 +138,47 @@ public class Timer extends Container {
             @Override
             public void onFinish() {
                 // Determine which timer type and setting the Starting time when finished
-                if(mTimerType.getText().toString().equals("Focus"))
-                {
-                    mTimerType.setText("Break");
-                    sessionCount++;
-                    if (sessionCount == 4) {
-                        startingTime = longBreakTimeStart;
-                        sessionCount = 0;
-                    }
-                    else {
-                        startingTime = shortBreakTimeStart;
-                    }
-                }
-
-                else
-                {
-                    mTimerType.setText("Focus");
-                    startingTime = focusTimeStart;
-                }
-                timeRemaining = startingTime;
-                updateCountDownText();
-
-
+                sessionCount++;
                 mTimerRunning = false;
                 mPlay.setText("Start");
+
+                focus = !focus;
+
+                setText();
+                setTime();
+
             }
         }.start();
         mTimerRunning = true;
         mPlay.setText("Pause");
 
+    }
+
+    public void setTime() {
+        if (focus) {
+            startingTime = focusTimeStart;
+        }
+        else
+        {
+            if (sessionCount == 4) {
+
+                startingTime = longBreakTimeStart;
+                sessionCount = 0;
+            }
+            else {
+
+                startingTime = shortBreakTimeStart;
+            }
+        }
+
+        timeRemaining = startingTime;
+        updateCountDownText();
+
+    }
+
+    public void setText() {
+        mTimerType.setText(focus ? "Focus" :
+                (sessionCount == 4) ? "Long Break" : "Short Break");
     }
 
     // Pausing the Timer
@@ -183,7 +198,8 @@ public class Timer extends Container {
         }
         Log.d("resetTimer", String.valueOf(startingTime));
 
-        timeRemaining = focusTimeStart;
+        setText();
+        setTime();
         updateCountDownText();
 
     }
@@ -202,12 +218,13 @@ public class Timer extends Container {
 
     private void loadData()
     {
-        focusTimeStart = startingTime = convertTime(getSettingsData(sessionsKey, snTimeDef));
-//        focusTimeStart = startingTime = convertTime((long) 1);
-        Log.d("loadData", String.valueOf(startingTime));
+//        focusTimeStart = startingTime = convertTime(getSettingsData(sessionsKey, snTimeDef));
+        focusTimeStart = startingTime = 3000;
+        shortBreakTimeStart = 5000;
+        longBreakTimeStart = 5000;
 
-        shortBreakTimeStart = convertTime(getSettingsData(shortBreakKey, shrtBrkTimeDef));
-        longBreakTimeStart = convertTime(getSettingsData(longBreakKey, lngBrkTimeDef));
+//        shortBreakTimeStart = convertTime(getSettingsData(shortBreakKey, shrtBrkTimeDef));
+//        longBreakTimeStart = convertTime(getSettingsData(longBreakKey, lngBrkTimeDef));
     }
 
     public long convertTime(long time)
@@ -230,14 +247,12 @@ public class Timer extends Container {
         SharedPreferences prefs = getSharedPreferences(timerPrefs, MODE_PRIVATE);
 
         startingTime = prefs.getLong("sessionTime", snTimeDef);
-
-        Log.d("onStart", String.valueOf(startingTime));
-
         sessionCount = prefs.getInt("sessionCount", 0);
-
         timeRemaining = prefs.getLong("sessionTime", focusTimeStart);
         mTimerRunning = prefs.getBoolean("timerRunning", false);
+        focus = prefs.getBoolean("focus", true);
 
+        setText();
         updateCountDownText();
 
         if (mTimerRunning) {
@@ -245,9 +260,11 @@ public class Timer extends Container {
             timeRemaining = mEndTime - System.currentTimeMillis();
 
             if (timeRemaining < 0) {
-                timeRemaining = 0;
                 mTimerRunning = false;
-                updateCountDownText();
+                focus = !focus;
+
+                setText();
+                setTime();
             }
             else {
                 startTimer();
@@ -265,6 +282,7 @@ public class Timer extends Container {
         editor.putLong("sessionTime", timeRemaining);
         editor.putBoolean("timerRunning", mTimerRunning);
         editor.putLong("endTime", mEndTime);
+        editor.putBoolean("focus", focus);
         editor.putInt("sessionCount", sessionCount);
         editor.apply();
 
