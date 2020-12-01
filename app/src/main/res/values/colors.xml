@@ -6,10 +6,7 @@
     <color name="secondaryColor">#fcc500</color>
     <color name="secondaryLightColor">#fff84f</color>
     <color name="secondaryDarkColor">#c49500</color>
-    <color name="primaryTextColor">#fefcfb</color>
-    <color name="secondaryTextColor">#100804</color>
     <color name="white">#fefcfb</color>
     <color name="black">#100804</color>
     <color name="lightGrey">#EFEDEC</color>
-    <color name="darkGrey">#9E9D9C</color>
 </resources>

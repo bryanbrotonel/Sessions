@@ -228,7 +228,7 @@ public class Timer extends Container {
 
     }
 
-    //For notifying users when to focus/take a break
+    // For notifying users when to focus/take a break
     public void setText() {
         mTimerType.setText(focus ? "Lets focus right now." :
                 sessionCount == 4 ? "Take a long break. You deserve it." : "Take a quick break.");
@@ -252,6 +252,7 @@ public class Timer extends Container {
 
         int[] dots = { R.id.session1,R.id.session2,R.id.session3,R.id.session4};
 
+        // Restore dots to default state
         for (int dot : dots) {
             ImageView img = findViewById(dot);
             img.setImageResource(R.drawable.ic_blue_circle);
@@ -268,6 +269,7 @@ public class Timer extends Container {
 
         ImageView dot;
 
+        // Fill in dots for session count
         switch(sessionCount) {
             case 1:
                 dot = findViewById(R.id.session1);
@@ -296,7 +298,7 @@ public class Timer extends Container {
 
     // TIMER DATA METHODS
 
-    //initializing values chosen from setting
+    // Initializing values chosen from setting
     private void loadData()
     {
         focusTimeStart = startingTime = convertTime(getSettingsData(sessionsKey, snTimeDef));
@@ -312,14 +314,17 @@ public class Timer extends Container {
     }
 
 
+    // Update today usage data
     public void writeTodayUsage() {
         // Get recorded usage date
         date_Usage_Today = getUsageData(Usage_Today, Date);
 
+        // Get today's recorded usage
         int usage = Integer.parseInt(getUsageData(Usage_Today, Usage));
         int sessions = Integer.parseInt(getUsageData(Usage_Today, Sessions));
         int goal = Integer.parseInt(getUsageData(Usage_Today, Goal));
 
+        //Check if data's date is today
         if (!date_Usage_Today.equals(defaultString) && date_Usage_Today.equals(getTodaysDate())) {
 
             // Continue recording usage
@@ -341,6 +346,7 @@ public class Timer extends Container {
         }
     }
 
+    // Get usage data from Shared pref
     private String getUsageData(String usageDay, String data) {
 
         SharedPreferences sharedPref = getSharedPreferences(usageDay, Context.MODE_PRIVATE);
@@ -348,6 +354,7 @@ public class Timer extends Container {
         return data.equals(Date) ? sharedPref.getString(data, "-") : String.valueOf(sharedPref.getInt(data, defaultInt));
     }
 
+    // Write usage data to Shared pref file
     private void writeUsageData(String file, String date, int usage, int sessions, int goal) {
 
         // Write usageData data
@@ -362,6 +369,7 @@ public class Timer extends Container {
         editor.commit();
     }
 
+    // Update usage data count in minutes
     private void updateUsageCount() {
         usage_Usage_Today = (int) ((usage_Usage_Today + focusTimeStart) / 60000);
 
@@ -369,11 +377,13 @@ public class Timer extends Container {
 
     // ONSTART AND ONPAUSE
 
+    // On Start, restores session's data if any, and manages current timer state
     @Override
     //When user switch back to timer, SharedPref will get all the values stored in OnStop();
     protected void onStart() {
         super.onStart();
 
+        // Restore session data if any, else assign default values
         SharedPreferences prefs = getSharedPreferences(timerPrefs, MODE_PRIVATE);
 
         startingTime = prefs.getLong("sessionTime", snTimeDef);
@@ -384,11 +394,14 @@ public class Timer extends Container {
         mTimerRunning = prefs.getBoolean("timerRunning", false);
         focus = prefs.getBoolean("focus", true);
 
+        // Update text in view
         setText();
         updateCountDownText();
 
-
+        // Manager timer state if running before
         if (mTimerRunning) {
+
+            // Get time elapsed since activity on Pause
             mEndTime = prefs.getLong("endTime", 0);
             // Get the new Time remaining by subtracting the End time with the current time eg.8:50 - 8:45 = 0:05
             timeRemaining = mEndTime - System.currentTimeMillis();
@@ -397,31 +410,38 @@ public class Timer extends Container {
             if (timeRemaining < 0) {
                 mTimerRunning = false;
 
+                // Update view
                 updateCountDownText();
                 mPlay.setImageResource(R.drawable.ic_playbutton);
 
+                // Update usage count if focus session
                 if (focus)
                     updateUsageCount();
 
                 focus = !focus;
 
+                // Update view
                 setText();
                 setTime();
             }
             else {
+                // Session still in continuing
                 startTimer();
             }
         }
     }
 
+    // On stop, updates today's usage, and saves current session's data
     @Override
 
     //When user switch to an different activity, this method will stop the counter and will store all the necessary values
     protected void onStop() {
         super.onStop();
 
+        // Update today's usage
         writeTodayUsage();
 
+        // Save current session's data
         SharedPreferences prefs = getSharedPreferences(timerPrefs, MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
@@ -441,11 +461,13 @@ public class Timer extends Container {
 
     // HELPER METHODS
 
+    // Converts minutes to milliseconds
     public long convertTime(long time)
     {
         return time * 60000;
     }
 
+    // Gets and formats today's date
     private String getTodaysDate() {
 
         String dateFormatString = "EEEE MMM d";

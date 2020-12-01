@@ -52,6 +52,8 @@ public class Usage extends Container {
     private int sessions_Usage_3Day = defaultInt;
     private int goal_Usage_3Day = defaultInt;
 
+
+    // Initializes usage data on Create
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,9 +96,8 @@ public class Usage extends Container {
         sharedPref = getSharedPreferences(Usage_Yesterday, Context.MODE_PRIVATE);
         String date = sharedPref.getString(Date, defaultString);
 
+        // Verify yesterday's data's date
         if (!date.equals(defaultString) && date.equals(getYesterdayDate())) {
-
-            //TODO: Update new values
 
             // Replace old 3Day data with new 2Day data
             date_Usage_3Day = date_Usage_2Day;
@@ -110,7 +111,7 @@ public class Usage extends Container {
             sessions_Usage_2Day = sessions_Usage_1Day;
             goal_Usage_2Day = goal_Usage_1Day;
 
-            // Get new values
+            // Add yesterday's data to history
             date_Usage_1Day = getUsageData(Usage_Yesterday, Date);
             usage_Usage_1Day = Integer.parseInt(getUsageData(Usage_Yesterday, Usage));
             sessions_Usage_1Day = Integer.parseInt(getUsageData(Usage_Yesterday, Sessions));
@@ -173,6 +174,7 @@ public class Usage extends Container {
         displayData(R.id.goal_data3, String.valueOf(goal_Usage_3Day));
     }
 
+    // Retrieves usage data from Shared pref
     private String getUsageData(String usageDay, String data) {
 
         SharedPreferences sharedPref = getSharedPreferences(usageDay, Context.MODE_PRIVATE);
@@ -180,11 +182,13 @@ public class Usage extends Container {
         return data.equals(Date) ? sharedPref.getString(data, "-") : String.valueOf(sharedPref.getInt(data, defaultInt));
     }
 
+    // Displays data to view
     private void displayData(int ID, String value) {
         TextView test = findViewById(ID);
         test.setText(value);
     }
 
+    // Gets and formats yesterday's date
     private String getYesterdayDate() {
 
         String dateFormatString = "EEEE MMM d";
