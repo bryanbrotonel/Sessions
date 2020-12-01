@@ -9,19 +9,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Sessions">
-        <activity android:name=".Introduction2">
+        <activity android:name=".Introduction2"
+            android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".Introduction">
+        <activity android:name=".Introduction"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Timer"/>
-        <activity android:name=".Usage"/>
-        <activity android:name=".Settings"/>
+        <activity android:name=".Timer"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Usage"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Settings"
+            android:screenOrientation="portrait"/>
 
         <receiver android:name=".ReminderBroadcast"/>
 
