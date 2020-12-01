@@ -11,12 +11,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
 
 public class Timer extends Container {
 
@@ -39,7 +39,6 @@ public class Timer extends Container {
     SharedPreferences sharedPref;
 
     private static final String timerPrefs = "Timer_Prefs" ;
-    private static final String todayUsage = "Usage_Today" ;
     private static final String settingsPrefs = "Settings_Prefs" ;
 
     private static final String shortBreakKey = "shortBreakKey";
@@ -54,12 +53,12 @@ public class Timer extends Container {
     private  long shortBreakTimeStart;
     private  long longBreakTimeStart;
     private TextView mTextViewCountDown, mTimerType;
-    private ImageButton mPlay,mReset;
-    private Button  mRestart;
+    private ImageButton mPlay,mReset, mRestart;
     private CountDownTimer countDownTimer;
     private boolean mTimerRunning;
     private long timeRemaining;
     private long mEndTime;
+    public int sessionCount;
     public boolean focus = true;
 
     // TIMER FUNCTION METHODS
@@ -74,13 +73,15 @@ public class Timer extends Container {
         //Timer Code
         loadData();
 
+        sessionCount = 0;
+
         timeRemaining = startingTime = focusTimeStart;
 
         mTextViewCountDown = findViewById(R.id.timer);
         mTimerType = findViewById(R.id.timerType);
         mPlay = findViewById(R.id.playButton);
         mReset =findViewById(R.id.resetButton);
-        mRestart = findViewById(R.id.restartButton);
+        mRestart = findViewById(R.id.replayButton);
 
         // When play button is press, Timer clicks down or pause
         mPlay.setOnClickListener(new View.OnClickListener() {
@@ -110,10 +111,6 @@ public class Timer extends Container {
         mRestart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!focus)
-                {
-                    mTimerType.setText("Focus");
-                }
 
                 focus = true;
                 resetTimer();
@@ -128,6 +125,10 @@ public class Timer extends Container {
     // Countdown timer ticking down
     private void startTimer()
     {
+
+        if (sessionCount == 0) {
+            resetSessionsDisplay();
+        }
 
         mEndTime = System.currentTimeMillis() + timeRemaining;
 
@@ -156,6 +157,8 @@ public class Timer extends Container {
 
                 if (focus) {
                     sessions_Usage_Today++;
+                    sessionCount++;
+                    updateSessionsDisplay();
                     updateUsageCount();
 
                     writeUsageData(Usage_Today, date_Usage_Today, usage_Usage_Today, sessions_Usage_Today, goal_Usage_Today);
@@ -192,6 +195,8 @@ public class Timer extends Container {
             pauseTimer();
         }
 
+        resetSessionsDisplay();
+
         setText();
         setTime();
         updateCountDownText();
@@ -208,8 +213,8 @@ public class Timer extends Container {
     }
 
     public void setText() {
-        mTimerType.setText(focus ? "Focus" :
-                (sessions_Usage_Today % 4 == 0) ? "Long Break" : "Short Break");
+        mTimerType.setText(focus ? "Lets focus right now." :
+                (sessions_Usage_Today % 4 == 0) ? "Take a long break. You deserve it." : "Take a quick break.");
     }
 
     // converting time remaining in Times and seconds and displaying it
@@ -222,6 +227,50 @@ public class Timer extends Container {
         String timeLeftFormatted = String.format("%02d:%02d", min, sec);
         mTextViewCountDown.setText(timeLeftFormatted);
 
+    }
+
+    private void resetSessionsDisplay() {
+
+        int[] dots = { R.id.session1,R.id.session2,R.id.session3,R.id.session4};
+
+        for (int dot : dots) {
+            ImageView img = findViewById(dot);
+            img.setImageResource(R.drawable.ic_blue_circle);
+        }
+
+    }
+
+    private void updateSessionsDisplay() {
+
+        int[] dots = { R.id.session1,R.id.session2,R.id.session3,R.id.session4};
+
+        ImageView dot;
+
+        switch(sessionCount) {
+            case 1:
+                dot = findViewById(R.id.session1);
+                dot.setImageResource(R.drawable.ic_yellow_circle);
+                break;
+            case 2:
+                for (int i = 0; i < 2; i++) {
+                    ImageView img = findViewById(dots[i]);
+                    img.setImageResource(R.drawable.ic_yellow_circle);
+                }
+                break;
+            case 3:
+                for (int i = 0; i < 3; i++) {
+                    ImageView img = findViewById(dots[i]);
+                    img.setImageResource(R.drawable.ic_yellow_circle);
+                }
+                break;
+            case 4:
+                for (int i = 0; i < 4; i++) {
+                    ImageView img = findViewById(dots[i]);
+                    img.setImageResource(R.drawable.ic_yellow_circle);
+                }
+                sessionCount = 0;
+                break;
+        }
     }
 
     // TIMER DATA METHODS
@@ -304,6 +353,7 @@ public class Timer extends Container {
 
         startingTime = prefs.getLong("sessionTime", snTimeDef);
         sessions_Usage_Today = prefs.getInt("sessionCount", 0);
+        sessionCount = prefs.getInt("sessionDisplay", 0);
         usage_Usage_Today = prefs.getInt("usageCount", 0);
         timeRemaining = prefs.getLong("sessionTime", focusTimeStart);
         mTimerRunning = prefs.getBoolean("timerRunning", false);
@@ -351,6 +401,7 @@ public class Timer extends Container {
         editor.putBoolean("focus", focus);
         editor.putInt("usageCount", usage_Usage_Today);
         editor.putInt("sessionCount", sessions_Usage_Today);
+        editor.putInt("sessionDisplay", sessionCount);
         editor.apply();
 
         if (countDownTimer != null) {

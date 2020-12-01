@@ -24,4 +24,8 @@
     <string name="session_caption">Focus</string>
     <string name="caption_focus">Focus on your work</string>
     <string name="caption_break">Take a break</string>
+    <string name="settingsHeading_sessions">Sessions</string>
+    <string name="headingSettings_goal">Goal</string>
+    <string name="headingSettings_shortBreaks">Short Breaks</string>
+    <string name="headingSettings_longBreaks">Long Breaks</string>
 </resources>

@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginHorizontal="20sp"
     tools:context=".Usage">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/navigation">
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="20dp"
+            android:paddingBottom="50dp"
             android:orientation="vertical">
 
             <TextView
@@ -20,7 +26,7 @@
                 android:fontFamily="@font/notosans_regular"
                 android:text="@string/title_usage"
                 android:textColor="@color/black"
-                android:layout_marginBottom="40dp"
+                android:layout_marginBottom="35dp"
                 android:textSize="40dp"
                 android:textStyle="bold" />
 
@@ -28,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:stretchColumns="*"
-                android:layout_marginBottom="20dp"
+                android:layout_marginVertical="30dp"
                 tools:context=".MainActivity">
 
                 <TableRow
@@ -45,7 +51,7 @@
 
                         <RelativeLayout
                             android:layout_marginRight="20dp"
-                            android:background="@color/lightGrey"
+                            android:background="@drawable/layout_bg"
                             android:padding="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -74,7 +80,7 @@
 
                         <RelativeLayout
                             android:padding="10dp"
-                            android:background="@color/lightGrey"
+                            android:background="@drawable/layout_bg"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="2"
@@ -110,7 +116,7 @@
                 android:id="@+id/header_usage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
+                android:layout_marginVertical="30dp"
                 android:text="@string/heading_usage"
                 android:fontFamily="@font/notosans_regular"
                 android:textFontWeight="600"
@@ -126,9 +132,9 @@
 
                 <TableRow
                     android:id="@+id/usage_row1"
-                    android:background="@color/lightGrey"
-                    android:paddingVertical="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/layout_bg"
+                    android:paddingVertical="20dp"
+                    android:layout_marginBottom="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal">
@@ -138,7 +144,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:fontFamily="@font/notosans_regular"
-                        android:gravity="center_vertical"
+                        android:gravity="center"
                         android:text="November 13"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="@color/black"
@@ -229,18 +235,18 @@
 
                 <TableRow
                     android:id="@+id/usage_row2"
-                    android:paddingVertical="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:paddingVertical="20dp"
+                    android:layout_marginBottom="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/lightGrey"
+                    android:background="@drawable/layout_bg"
                     android:gravity="center_horizontal">
 
                     <TextView
                         android:id="@+id/usage_date2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center_vertical"
+                        android:gravity="center"
                         android:text="November 14"
                         android:textFontWeight="800"
                         android:fontFamily="@font/notosans_regular"
@@ -332,18 +338,18 @@
 
                 <TableRow
                     android:id="@+id/usage_row3"
-                    android:background="@color/lightGrey"
-                    android:paddingVertical="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/layout_bg"
+                    android:paddingVertical="20dp"
+                    android:layout_marginBottom="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal">
 
                     <TextView
                         android:id="@+id/usage_date3"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:gravity="center_vertical"
+                        android:gravity="center"
                         android:text="November 15"
                         android:textFontWeight="800"
                         android:fontFamily="@font/notosans_regular"
@@ -437,11 +443,14 @@
 
         </LinearLayout>
 
+    </ScrollView>
+
     <include
         layout="@menu/item_bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         app:layout_constraintBottom_toBottomOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

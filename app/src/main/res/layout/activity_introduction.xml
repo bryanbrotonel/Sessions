@@ -27,8 +27,6 @@
         android:layout_marginTop="60dp"
         app:srcCompat="@drawable/ic_loving_doodle" />
 
-
-
     <TextView
         android:id="@+id/welcomeMessage"
         android:layout_width="wrap_content"

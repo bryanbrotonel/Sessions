@@ -13,33 +13,40 @@ public class Usage extends Container {
 
     SharedPreferences sharedPref;
 
+    // Usage Shared prefs files
     private static final String Usage_Today = "Usage_Today" ;
     private static final String Usage_Yesterday = "Usage_Yesterday" ;
     private static final String Usage_1Day = "Usage_1Day" ;
     private static final String Usage_2Day = "Usage_2Day" ;
     private static final String Usage_3Day = "Usage_3Day" ;
 
+    //Usage value keys
     private static final String Date = "dateKey";
     private static final String Sessions = "sessionsKey";
     private static final String Usage = "usageKey";
     private static final String Goal = "goalKey";
 
+    //Usage default values
     private final String defaultString = "-";
     private final int defaultInt = 0;
 
+    // Today usage values
     private int usage_Usage_Today = defaultInt;
     private int sessions_Usage_Today = defaultInt;
 
+    // 1Day usage values
     private String date_Usage_1Day = defaultString;
     private int usage_Usage_1Day = defaultInt;
     private int sessions_Usage_1Day = defaultInt;
     private int goal_Usage_1Day = defaultInt;
 
+    // 2Day usage values
     private String date_Usage_2Day = defaultString;
     private int usage_Usage_2Day = defaultInt;
     private int sessions_Usage_2Day = defaultInt;
     private int goal_Usage_2Day = defaultInt;
 
+    // 3Day usage values
     private String date_Usage_3Day = defaultString;
     private int usage_Usage_3Day = defaultInt;
     private int sessions_Usage_3Day = defaultInt;
@@ -55,6 +62,7 @@ public class Usage extends Container {
 
     }
 
+    // Writes all shared data to Shared prefs on pause
     @Override
     public void onPause() {
         super.onPause();
@@ -65,6 +73,7 @@ public class Usage extends Container {
 
     }
 
+    // Writes usage data to Shared prefs file
     private void writeUsageData(String file, String date, int usage, int sessions, int goal) {
 
         // Write usageData data
@@ -79,6 +88,7 @@ public class Usage extends Container {
         editor.apply();
     }
 
+    // Updates old usage history data with new usage data when new data is available
     private void updateUsageData() {
 
         sharedPref = getSharedPreferences(Usage_Yesterday, Context.MODE_PRIVATE);
@@ -110,24 +120,26 @@ public class Usage extends Container {
 
     }
 
+    // Restores usage data to Shared Prefs
     private void restoreUsageData() {
 
+        // Fetch Today usage data
         usage_Usage_Today = Integer.parseInt(getUsageData(Usage_Today, Usage));
         sessions_Usage_Today = Integer.parseInt(getUsageData(Usage_Today, Sessions));
 
-        // Display Usage_1Day data
+        // Fetch 1Day usage data
         date_Usage_1Day = getUsageData(Usage_1Day, Date);
         usage_Usage_1Day = Integer.parseInt(getUsageData(Usage_1Day, Usage));
         sessions_Usage_1Day = Integer.parseInt(getUsageData(Usage_1Day, Sessions));
         goal_Usage_1Day = Integer.parseInt(getUsageData(Usage_1Day, Goal));
 
-        // Display Usage_2Day data
+        // Fetch 2Day usage data
         date_Usage_2Day = getUsageData(Usage_2Day, Date);
         usage_Usage_2Day = Integer.parseInt(getUsageData(Usage_2Day, Usage));
         sessions_Usage_2Day = Integer.parseInt(getUsageData(Usage_2Day, Sessions));
         goal_Usage_2Day = Integer.parseInt(getUsageData(Usage_2Day, Goal));
 
-        // Display Usage_3Day data
+        // Fetch 3Day usage data
         date_Usage_3Day = getUsageData(Usage_3Day, Date);
         usage_Usage_3Day = Integer.parseInt(getUsageData(Usage_3Day, Usage));
         sessions_Usage_3Day = Integer.parseInt(getUsageData(Usage_3Day, Sessions));
@@ -135,6 +147,7 @@ public class Usage extends Container {
 
     }
 
+    // Display usage data in view
     private void displayUsageData() {
 
         //Display today's usage data
