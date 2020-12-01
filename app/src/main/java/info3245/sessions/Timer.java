@@ -7,18 +7,39 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 
 public class Timer extends Container {
+
+    private static final String Usage_Today = "Usage_Today" ;
+    private static final String Usage_Yesterday = "Usage_Yesterday" ;
+
+    private static final String Date = "dateKey";
+    private static final String Sessions = "sessionsKey";
+    private static final String Usage = "usageKey";
+    private static final String Goal = "goalKey";
+
+    private final String defaultString = "-";
+    private final int defaultInt = 0;
+
+    private String date_Usage_Today = defaultString;
+    private int usage_Usage_Today = defaultInt;
+    private int sessions_Usage_Today = defaultInt;
+    private int goal_Usage_Today = 4;
 
     SharedPreferences sharedPref;
 
     private static final String timerPrefs = "Timer_Prefs" ;
+    private static final String todayUsage = "Usage_Today" ;
     private static final String settingsPrefs = "Settings_Prefs" ;
 
     private static final String shortBreakKey = "shortBreakKey";
@@ -40,23 +61,21 @@ public class Timer extends Container {
     private boolean mTimerRunning;
     private long timeRemaining;
     private long mEndTime;
-    public int sessionCount;
+    public boolean focus = true;
 
-//Timer Code
+    // TIMER FUNCTION METHODS
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_timer);
 
-        sharedPref = getApplicationContext().getSharedPreferences(timerPrefs, Context.MODE_PRIVATE);
+        writeTodayUsage();
 
         //Timer Code
         loadData();
 
         timeRemaining = startingTime = focusTimeStart;
-
-        sessionCount = 0;
 
         mTextViewCountDown = findViewById(R.id.timer);
         mTimerType = findViewById(R.id.timerType);
@@ -92,32 +111,18 @@ public class Timer extends Container {
         mRestart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mTimerType.getText().toString().equals("Break") )
+                if(!focus)
                 {
                     mTimerType.setText("Focus");
                 }
 
-                startingTime = focusTimeStart;
+                focus = true;
                 resetTimer();
-                sessionCount = 0;
-
             }
         });
         updateCountDownText();
 //Timer Code
 
-    }
-
-    // Returns layout ID to Container Class
-    @Override
-    int getLayoutId() {
-        return R.layout.activity_timer;
-    }
-
-    // Returns navigation ID to Container Class
-    @Override
-    int getBottomNavigationMenuItemId() {
-        return R.id.nav_timer;
     }
 
     //Timer Code Methods
@@ -149,33 +154,25 @@ public class Timer extends Container {
 
             @Override
             public void onFinish() {
-
-
                 // Determine which timer type and setting the Starting time when finished
-                if(mTimerType.getText().toString().equals("Focus"))
-                {
-                    mTimerType.setText("Break");
-                    sessionCount++;
-                    if (sessionCount == 4) {
-                        startingTime = longBreakTimeStart;
-                        sessionCount = 0;
-                    }
-                    else {
-                        startingTime = shortBreakTimeStart;
-                    }
+
+                if (focus) {
+                    sessions_Usage_Today++;
+                    updateUsageCount();
+                    Log.d("usage_Usage_Today", String.valueOf(usage_Usage_Today));
+
+                    writeUsageData(Usage_Today, date_Usage_Today, usage_Usage_Today, sessions_Usage_Today, goal_Usage_Today);
                 }
 
-                else
-                {
-                    mTimerType.setText("Focus");
-                    startingTime = focusTimeStart;
-                }
-                timeRemaining = startingTime;
-                updateCountDownText();
-
-
+                Log.d("sessions_Usage_Today" , String.valueOf(sessions_Usage_Today));
                 mTimerRunning = false;
                 mPlay.setImageResource(R.drawable.ic_playbutton);
+
+                focus = !focus;
+
+                setText();
+                setTime();
+
             }
         }.start();
         mTimerRunning = true;
@@ -198,10 +195,26 @@ public class Timer extends Container {
         if (mTimerRunning) {
             pauseTimer();
         }
+        Log.d("resetTimer", String.valueOf(startingTime));
+
+        setText();
+        setTime();
+        updateCountDownText();
+
+    }
+
+    public void setTime() {
+        startingTime = focus ? focusTimeStart :
+                sessions_Usage_Today % 4 == 0 ? longBreakTimeStart : shortBreakTimeStart;
 
         timeRemaining = startingTime;
         updateCountDownText();
 
+    }
+
+    public void setText() {
+        mTimerType.setText(focus ? "Focus" :
+                (sessions_Usage_Today % 4 == 0) ? "Long Break" : "Short Break");
     }
 
     // converting time remaining in Times and seconds and displaying it
@@ -216,25 +229,82 @@ public class Timer extends Container {
 
     }
 
+
+    // TIMER DATA METHODS
+
     private void loadData()
     {
-        focusTimeStart = startingTime = convertTime(getSettingsData(sessionsKey, snTimeDef));
-        shortBreakTimeStart = convertTime(getSettingsData(shortBreakKey, shrtBrkTimeDef));
-        longBreakTimeStart = convertTime(getSettingsData(longBreakKey, lngBrkTimeDef));
-    }
+//        focusTimeStart = startingTime = convertTime(getSettingsData(sessionsKey, snTimeDef));
+//        shortBreakTimeStart = convertTime(getSettingsData(shortBreakKey, shrtBrkTimeDef));
+//        longBreakTimeStart = convertTime(getSettingsData(longBreakKey, lngBrkTimeDef));
 
-    public long convertTime(long time)
-    {
-        return time * 60000;
+        focusTimeStart = startingTime = 1000;
+        shortBreakTimeStart = 1000;
+        longBreakTimeStart = 1000;
     }
 
     public long getSettingsData(String key, long defaultVal) {
-        sharedPref = getApplicationContext().getSharedPreferences(settingsPrefs, Context.MODE_PRIVATE);
+        sharedPref = getSharedPreferences(settingsPrefs, Context.MODE_PRIVATE);
 
         return sharedPref.getLong(key, defaultVal);
     }
 
-//Timer Code*/
+    public void writeTodayUsage() {
+        // Get recorded usage date
+        date_Usage_Today = getUsageData(Usage_Today, Date);
+
+        int usage = Integer.parseInt(getUsageData(Usage_Today, Usage));
+        int sessions = Integer.parseInt(getUsageData(Usage_Today, Sessions));
+        int goal = Integer.parseInt(getUsageData(Usage_Today, Goal));
+
+        if (!date_Usage_Today.equals(defaultString) && date_Usage_Today.equals(getTodaysDate())) {
+
+            // Continue recording usage
+            usage_Usage_Today = usage;
+            sessions_Usage_Today = sessions;
+            goal_Usage_Today = goal;
+        }
+        else {
+
+            // Write usage data to Yesterday
+            writeUsageData(Usage_Yesterday, date_Usage_Today, usage, sessions, goal);
+
+            // Reset usage data
+            date_Usage_Today = getTodaysDate();
+            usage_Usage_Today = defaultInt;
+            sessions_Usage_Today = defaultInt;
+            goal_Usage_Today = 4;
+
+        }
+    }
+
+    private String getUsageData(String usageDay, String data) {
+
+        SharedPreferences sharedPref = getSharedPreferences(usageDay, Context.MODE_PRIVATE);
+
+        return data.equals(Date) ? sharedPref.getString(data, "-") : String.valueOf(sharedPref.getInt(data, defaultInt));
+    }
+
+    private void writeUsageData(String file, String date, int usage, int sessions, int goal) {
+
+        // Write usageData data
+        sharedPref = getSharedPreferences(file, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        editor.putString(Date, date);
+        editor.putInt(Sessions, sessions);
+        editor.putInt(Usage, usage);
+        editor.putInt(Goal, goal);
+
+        editor.commit();
+    }
+
+    private void updateUsageCount() {
+        usage_Usage_Today = (int) ((usage_Usage_Today + focusTimeStart) / 60000);
+
+    }
+
+    // ONSTART AND ONPAUSE
 
     @Override
     protected void onStart() {
@@ -242,12 +312,14 @@ public class Timer extends Container {
 
         SharedPreferences prefs = getSharedPreferences(timerPrefs, MODE_PRIVATE);
 
-        startingTime = prefs.getLong("sessionTime", focusTimeStart);
-        sessionCount = prefs.getInt("sessionCount", 0);
-
+        startingTime = prefs.getLong("sessionTime", snTimeDef);
+        sessions_Usage_Today = prefs.getInt("sessionCount", 0);
+        usage_Usage_Today = prefs.getInt("usageCount", 0);
         timeRemaining = prefs.getLong("sessionTime", focusTimeStart);
         mTimerRunning = prefs.getBoolean("timerRunning", false);
+        focus = prefs.getBoolean("focus", true);
 
+        setText();
         updateCountDownText();
 
         if (mTimerRunning) {
@@ -255,10 +327,18 @@ public class Timer extends Container {
             timeRemaining = mEndTime - System.currentTimeMillis();
 
             if (timeRemaining < 0) {
-                timeRemaining = 0;
                 mTimerRunning = false;
+
                 updateCountDownText();
                 mPlay.setImageResource(R.drawable.ic_playbutton);
+
+                if (focus)
+                    updateUsageCount();
+
+                focus = !focus;
+
+                setText();
+                setTime();
             }
             else {
                 startTimer();
@@ -270,17 +350,52 @@ public class Timer extends Container {
     protected void onStop() {
         super.onStop();
 
+        writeTodayUsage();
+
         SharedPreferences prefs = getSharedPreferences(timerPrefs, MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
         editor.putLong("sessionTime", timeRemaining);
         editor.putBoolean("timerRunning", mTimerRunning);
         editor.putLong("endTime", mEndTime);
-        editor.putInt("sessionCount", sessionCount);
+        editor.putBoolean("focus", focus);
+        editor.putInt("usageCount", usage_Usage_Today);
+        editor.putInt("sessionCount", sessions_Usage_Today);
         editor.apply();
 
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
+    }
+
+    // HELPER METHODS
+
+    public long convertTime(long time)
+    {
+        return time * 60000;
+    }
+
+    private String getTodaysDate() {
+
+        String dateFormatString = "EEEE MMM d";
+
+        Calendar calendar = Calendar.getInstance();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatString);
+
+        return dateFormat.format(calendar.getTime());
+    }
+
+
+    // Returns layout ID to Container Class
+    @Override
+    int getLayoutId() {
+        return R.layout.activity_timer;
+    }
+
+    // Returns navigation ID to Container Class
+    @Override
+    int getBottomNavigationMenuItemId() {
+        return R.id.nav_timer;
     }
 }
