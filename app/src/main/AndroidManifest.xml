@@ -23,6 +23,7 @@
         <activity android:name=".Usage"/>
         <activity android:name=".Settings"/>
 
+        //We build a broadcast receiver here for our notification
         <receiver android:name=".ReminderBroadcast"/>
 
     </application>

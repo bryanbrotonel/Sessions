@@ -141,13 +141,18 @@ public class Timer extends Container {
         // This will be used to calculate the time remaining, in the onStart() method
         mEndTime = System.currentTimeMillis() + timeRemaining;
 
+        //A toast to show that your session has begun
         Toast.makeText(Timer.this, "Your session has begun!",
                 Toast.LENGTH_SHORT).show();
 
+        //We create a new eintent with our ReminderBroadcast class to build our new notification
+        //We use a pending intent so we can call on it at a later time
         Intent intent = new Intent(Timer.this, ReminderBroadcast.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(Timer.this,
                 0, intent, 0);
 
+        //Now create an alarm manager to to set off the reminder once the time reaches 0.5 seconds
+        //from the end time
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP, mEndTime-500, pendingIntent);
 
