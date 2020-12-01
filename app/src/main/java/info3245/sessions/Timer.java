@@ -127,7 +127,7 @@ public class Timer extends Container {
         //used for background calculation
         mCurrentTime = System.currentTimeMillis() + timeRemaining;
 
-        Toast.makeText(Timer.this, "Your time Period has begun!",
+        Toast.makeText(Timer.this, "Your session has begun!",
                 Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(Timer.this, ReminderBroadcast.class);

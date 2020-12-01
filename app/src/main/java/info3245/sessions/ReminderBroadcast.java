@@ -13,8 +13,8 @@ public class ReminderBroadcast extends BroadcastReceiver {
     {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "notifyPomodoro")
         .setSmallIcon(R.drawable.ic_baseline_add_alert_24)
-        .setContentTitle("Remind Pomodoro")
-        .setContentText("Your period has ended")
+        .setContentTitle("Pomodoro Reminder")
+        .setContentText("Your session has ended")
         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
