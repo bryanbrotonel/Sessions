@@ -20,6 +20,7 @@ import java.util.Calendar;
 
 public class Timer extends Container {
 
+    //For Usage
     private static final String Usage_Today = "Usage_Today" ;
     private static final String Usage_Yesterday = "Usage_Yesterday" ;
 
@@ -38,6 +39,7 @@ public class Timer extends Container {
 
     SharedPreferences sharedPref;
 
+    //For Setting
     private static final String timerPrefs = "Timer_Prefs" ;
     private static final String settingsPrefs = "Settings_Prefs" ;
 
@@ -48,6 +50,7 @@ public class Timer extends Container {
     private final long shrtBrkTimeDef = 2;
     private final long lngBrkTimeDef = 20;
 
+    //For Timer
     private  long startingTime;
     private  long focusTimeStart;
     private  long shortBreakTimeStart;
@@ -70,13 +73,16 @@ public class Timer extends Container {
 
         writeTodayUsage();
 
-        //Timer Code
+        //Load data will load what user picked in settings
         loadData();
+
 
         sessionCount = 0;
 
+        //Setting The Timer
         timeRemaining = startingTime = focusTimeStart;
 
+        //Initializing Values
         mTextViewCountDown = findViewById(R.id.timer);
         mTimerType = findViewById(R.id.timerType);
         mPlay = findViewById(R.id.playButton);
@@ -131,6 +137,8 @@ public class Timer extends Container {
             resetSessionsDisplay();
         }
 
+        // This value is the projected endtime eg. 8:40 plus timer remaining of 10min -> endtime is 8:50
+        // This will be used to calculate the time remaining, in the onStart() method
         mEndTime = System.currentTimeMillis() + timeRemaining;
 
         Toast.makeText(Timer.this, "Your session has begun!",
@@ -143,6 +151,7 @@ public class Timer extends Container {
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP, mEndTime-500, pendingIntent);
 
+        //ticks down the timer and updates the textview
         countDownTimer = new CountDownTimer(timeRemaining,1000) {
             @Override
             public void onTick(long l) {
@@ -154,8 +163,9 @@ public class Timer extends Container {
 
             @Override
             public void onFinish() {
-                // Determine which timer type and setting the Starting time when finished
 
+                // Determine which timer type and setting the Starting time when finished
+                // adds a session counter for usage
                 if (focus) {
                     sessions_Usage_Today++;
                     sessionCount++;
@@ -165,6 +175,7 @@ public class Timer extends Container {
                     writeUsageData(Usage_Today, date_Usage_Today, usage_Usage_Today, sessions_Usage_Today, goal_Usage_Today);
                 }
 
+                // turn off timer and change the button icon
                 mTimerRunning = false;
                 mPlay.setImageResource(R.drawable.ic_playbutton);
 
@@ -180,7 +191,7 @@ public class Timer extends Container {
 
     }
 
-    // Pausing the Timer
+    // Pausing the Timer setting canceling the timer
     private void pauseTimer()
     {
         countDownTimer.cancel();
@@ -202,6 +213,7 @@ public class Timer extends Container {
 
     }
 
+    //Determines the Starting time and update the TextView
     public void setTime() {
         startingTime = focus ? focusTimeStart :
                 sessionCount == 4 ? longBreakTimeStart : shortBreakTimeStart;
@@ -211,6 +223,7 @@ public class Timer extends Container {
 
     }
 
+    //For notifying users when to focus/take a break
     public void setText() {
         mTimerType.setText(focus ? "Lets focus right now." :
                 sessionCount == 4 ? "Take a long break. You deserve it." : "Take a quick break.");
@@ -278,6 +291,7 @@ public class Timer extends Container {
 
     // TIMER DATA METHODS
 
+    //initializing values chosen from setting
     private void loadData()
     {
         focusTimeStart = startingTime = convertTime(getSettingsData(sessionsKey, snTimeDef));
@@ -285,11 +299,13 @@ public class Timer extends Container {
         longBreakTimeStart = convertTime(getSettingsData(longBreakKey, lngBrkTimeDef));
     }
 
+    //Getting values from Setting
     public long getSettingsData(String key, long defaultVal) {
         sharedPref = getSharedPreferences(settingsPrefs, Context.MODE_PRIVATE);
 
         return sharedPref.getLong(key, defaultVal);
     }
+
 
     public void writeTodayUsage() {
         // Get recorded usage date
@@ -349,6 +365,7 @@ public class Timer extends Container {
     // ONSTART AND ONPAUSE
 
     @Override
+    //When user switch back to timer, SharedPref will get all the values stored in OnStop();
     protected void onStart() {
         super.onStart();
 
@@ -365,10 +382,13 @@ public class Timer extends Container {
         setText();
         updateCountDownText();
 
+
         if (mTimerRunning) {
             mEndTime = prefs.getLong("endTime", 0);
+            // Get the new Time remaining by subtracting the End time with the current time eg.8:50 - 8:45 = 0:05
             timeRemaining = mEndTime - System.currentTimeMillis();
 
+            // the time remaining is negative, set the value to zero and update the timer
             if (timeRemaining < 0) {
                 mTimerRunning = false;
 
@@ -390,6 +410,8 @@ public class Timer extends Container {
     }
 
     @Override
+
+    //When user switch to an different activity, this method will stop the counter and will store all the necessary values
     protected void onStop() {
         super.onStop();
 
@@ -430,7 +452,7 @@ public class Timer extends Container {
         return dateFormat.format(calendar.getTime());
     }
 
-
+    //Navigation Methods
     // Returns layout ID to Container Class
     @Override
     int getLayoutId() {
