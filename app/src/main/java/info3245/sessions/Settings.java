@@ -102,7 +102,9 @@ public class Settings extends Container{
 
         for (int button : settingsBtns) {
             RadioButton sessionBtn = findViewById(button);
-            sessionBtn.setChecked(true);
+
+            if (sessionBtn != null)
+                sessionBtn.setChecked(true);
         }
     }
 
