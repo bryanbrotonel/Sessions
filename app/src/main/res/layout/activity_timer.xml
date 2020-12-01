@@ -7,65 +7,112 @@
     android:layout_height="match_parent"
     tools:context=".Timer">
 
-    <LinearLayout
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
+        android:layout_marginHorizontal="20dp"
         >
-        <TextView
-            android:id="@+id/timerType"
-            android:textColor="@color/black"
-            android:textSize="60sp"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Focus" />
-        <TextView
-            android:id="@+id/timer"
-            android:textColor="@color/black"
-            android:textSize="60sp"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="00:00" />
+
+        <TableRow android:layout_width="match_parent">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/notosans_regular"
+                android:text="@string/heading_timer"
+                android:textColor="@color/black"
+                android:textSize="40dp"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow android:layout_width="match_parent"
+            android:layout_marginTop="50dp"
+            >
+
+            <TextView
+                android:id="@+id/timer"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/notosans_regular"
+                android:text="00:00"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="60sp"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            >
+
+            <TextView
+                android:id="@+id/timerType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_weight="1"
+                android:text="@string/session_caption"
+                android:textColor="@color/black"
+                android:textFontWeight="450"
+                android:textSize="30sp" />
+
+        </TableRow>
+
     <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:layout_marginTop="20sp"
         android:layout_marginBottom="20sp"
         >
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            >
 
-        <ImageButton
+            <ImageButton
+                android:id="@+id/playButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_button"
+                android:layout_marginHorizontal="5dp"
+                android:src="@drawable/ic_playbutton" />
 
-            android:id="@+id/playButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_button"
-            android:layout_marginRight="20sp"
-            android:src="@drawable/ic_playbutton"
-            />
+            <ImageButton
+                android:id="@+id/resetButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_button"
+                android:layout_marginHorizontal="5dp"
+                android:src="@drawable/ic_restartbutton" />
+        </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/resetButton"
-            android:background="@drawable/ic_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_restartbutton"
-            />
     </TableRow>
 
-        <Button
-            android:id="@+id/restartButton"
+        <TableRow
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Restart Pomodoro" />
+            android:gravity="center_horizontal"
+            android:layout_marginTop="10sp"
+            >
+
+            <Button
+                android:id="@+id/restartButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Restart Pomodoro" />
+
+        </TableRow>
 
 
-    </LinearLayout>
+</TableLayout>
 
     <include
         layout="@menu/item_bottom_navigation"

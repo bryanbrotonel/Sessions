@@ -14,27 +14,21 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/nav_usage"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/notosans_regular"
                 android:text="@string/title_usage"
-                android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textSize="40dp" />
-
-            <TextView
-                android:id="@+id/header_greeting"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:text="Hey, User"
-                android:textColor="@color/black"
-                android:textSize="30dp" />
+                android:layout_marginBottom="40dp"
+                android:textSize="40dp"
+                android:textStyle="bold" />
 
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:stretchColumns="*"
+                android:layout_marginBottom="20dp"
                 tools:context=".MainActivity">
 
                 <TableRow
@@ -42,57 +36,71 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal">
 
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:layout_gravity="center">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center"
+                        >
 
-                        <TextView
-                            android:id="@+id/data_todayUsage"
+                        <RelativeLayout
+                            android:layout_marginRight="20dp"
+                            android:background="@color/lightGrey"
+                            android:padding="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:textColor="@color/black"
-                            android:text="0"
-                            android:textSize="40dp"
-                            />
+                            android:layout_column="1"
+                            android:layout_gravity="center">
 
-                        <TextView
-                            android:id="@+id/header_todayUsage"
+                            <TextView
+                                android:id="@+id/data_todayUsage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:textColor="@color/primaryLightColor"
+                                android:text="0"
+                                android:textSize="50dp"
+                                />
+
+                            <TextView
+                                android:id="@+id/header_todayUsage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/data_todayUsage"
+                                android:text="@string/header_usage"
+                                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:padding="10dp"
+                            android:background="@color/lightGrey"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/data_todayUsage"
-                            android:text="@string/header_usage"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                            android:layout_column="2"
+                            android:layout_gravity="center">
 
-                    </RelativeLayout>
+                            <TextView
+                                android:id="@+id/data_todaySessions"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:textColor="@color/primaryLightColor"
+                                android:text="0"
+                                android:textSize="50dp"
+                                />
 
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="2"
-                        android:layout_gravity="center">
+                            <TextView
+                                android:id="@+id/header_todaySessions"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/data_todaySessions"
+                                android:text="@string/header_sessions"
+                                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                        <TextView
-                            android:id="@+id/data_todaySessions"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:textColor="@color/black"
-                            android:text="0"
-                            android:textSize="40dp"
-                            />
+                        </RelativeLayout>
 
-                        <TextView
-                            android:id="@+id/header_todaySessions"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/data_todaySessions"
-                            android:text="@string/header_sessions"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                    </RelativeLayout>
+                    </LinearLayout>
 
                 </TableRow>
 
@@ -104,29 +112,37 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
                 android:text="@string/heading_usage"
+                android:fontFamily="@font/notosans_regular"
+                android:textFontWeight="600"
                 android:textColor="@color/black"
                 android:textSize="30sp" />
 
             <TableLayout
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:stretchColumns="*"
                 tools:context=".MainActivity">
 
-                <TextView
-                    android:id="@+id/usage_date1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="November 13"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/black" />
-
                 <TableRow
                     android:id="@+id/usage_row1"
+                    android:background="@color/lightGrey"
+                    android:paddingVertical="10dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/usage_date1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/notosans_regular"
+                        android:gravity="center_vertical"
+                        android:text="November 13"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/black"
+                        android:textFontWeight="800" />
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -140,6 +156,8 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:text="0"
+                            android:textColor="@color/secondaryColor"
+                            android:textFontWeight="700"
                             android:textAppearance="?android:attr/textAppearanceLarge" />
 
                         <TextView
@@ -148,7 +166,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/usage_data1"
                             android:layout_centerInParent="true"
-                            android:text="@string/caption_data"
+                            android:text="@string/caption_usage"
                             android:textAppearance="?android:attr/textAppearanceSmall" />
 
                     </RelativeLayout>
@@ -165,6 +183,8 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:text="0"
+                            android:textColor="@color/secondaryColor"
+                            android:textFontWeight="700"
                             android:textAppearance="?android:attr/textAppearanceLarge" />
 
                         <TextView
@@ -190,6 +210,8 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:text="0"
+                            android:textColor="@color/secondaryColor"
+                            android:textFontWeight="700"
                             android:textAppearance="?android:attr/textAppearanceLarge" />
 
                         <TextView
@@ -205,19 +227,25 @@
 
                 </TableRow>
 
-                <TextView
-                    android:id="@+id/usage_date2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="November 14"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/black" />
-
                 <TableRow
                     android:id="@+id/usage_row2"
+                    android:paddingVertical="10dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@color/lightGrey"
                     android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/usage_date2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="November 14"
+                        android:textFontWeight="800"
+                        android:fontFamily="@font/notosans_regular"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/black" />
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -231,6 +259,8 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:text="0"
+                            android:textColor="@color/secondaryColor"
+                            android:textFontWeight="700"
                             android:textAppearance="?android:attr/textAppearanceLarge" />
 
                         <TextView
@@ -239,7 +269,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/usage_data2"
                             android:layout_centerInParent="true"
-                            android:text="@string/caption_data"
+                            android:text="@string/caption_usage"
                             android:textAppearance="?android:attr/textAppearanceSmall" />
 
                     </RelativeLayout>
@@ -256,6 +286,8 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:text="0"
+                            android:textColor="@color/secondaryColor"
+                            android:textFontWeight="700"
                             android:textAppearance="?android:attr/textAppearanceLarge" />
 
                         <TextView
@@ -281,6 +313,8 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:text="0"
+                            android:textColor="@color/secondaryColor"
+                            android:textFontWeight="700"
                             android:textAppearance="?android:attr/textAppearanceLarge" />
 
                         <TextView
@@ -296,19 +330,25 @@
 
                 </TableRow>
 
-                <TextView
-                    android:id="@+id/usage_date3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="November 15"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/black" />
-
                 <TableRow
                     android:id="@+id/usage_row3"
+                    android:background="@color/lightGrey"
+                    android:paddingVertical="10dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/usage_date3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="November 15"
+                        android:textFontWeight="800"
+                        android:fontFamily="@font/notosans_regular"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/black" />
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -322,6 +362,8 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:text="0"
+                            android:textColor="@color/secondaryColor"
+                            android:textFontWeight="700"
                             android:textAppearance="?android:attr/textAppearanceLarge" />
 
                         <TextView
@@ -330,7 +372,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/usage_data3"
                             android:layout_centerInParent="true"
-                            android:text="@string/caption_data"
+                            android:text="@string/caption_usage"
                             android:textAppearance="?android:attr/textAppearanceSmall" />
 
                     </RelativeLayout>
@@ -347,6 +389,8 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:text="0"
+                            android:textColor="@color/secondaryColor"
+                            android:textFontWeight="700"
                             android:textAppearance="?android:attr/textAppearanceLarge" />
 
                         <TextView
@@ -372,6 +416,8 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:text="0"
+                            android:textColor="@color/secondaryColor"
+                            android:textFontWeight="700"
                             android:textAppearance="?android:attr/textAppearanceLarge" />
 
                         <TextView

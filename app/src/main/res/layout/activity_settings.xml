@@ -12,12 +12,13 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/nav_settings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
+            android:fontFamily="@font/notosans_regular"
+            android:text="@string/title_settings"
             android:textColor="@color/black"
-            android:text="@string/title_settings"/>
+            android:textSize="40dp"
+            android:textStyle="bold" />
 
         <TableLayout
             android:layout_height="wrap_content"
@@ -30,6 +31,8 @@
             >
 
             <RadioGroup
+                android:background="@color/lightGrey"
+                android:padding="10sp"
                 android:id="@+id/snsGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -83,6 +86,8 @@
             </RadioGroup>
 
             <RadioGroup
+                android:background="@color/lightGrey"
+                android:padding="10sp"
                 android:id="@+id/goalGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -143,6 +148,8 @@
                 >
 
                 <RadioGroup
+                    android:background="@color/lightGrey"
+                    android:padding="10sp"
                     android:id="@+id/short_BrkGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -193,6 +200,8 @@
                 </RadioGroup>
 
                 <RadioGroup
+                    android:background="@color/lightGrey"
+                    android:padding="10sp"
                     android:id="@+id/long_BrkGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
