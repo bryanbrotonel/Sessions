@@ -19,7 +19,7 @@ public abstract class Container extends AppCompatActivity implements BottomNavig
 
     private static final String settingsPrefs = "Settings_Prefs" ;
     public static final String sessionsKey = "sessionsKey";
-    private long snTimeDef = 20;
+    private final long snTimeDef = 20;
 
     protected BottomNavigationView navigationView;
 
@@ -32,7 +32,7 @@ public abstract class Container extends AppCompatActivity implements BottomNavig
 
         sharedPref = getApplicationContext().getSharedPreferences(settingsPrefs, Context.MODE_PRIVATE);
 
-        navigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        navigationView = findViewById(R.id.navigation);
         navigationView.setOnNavigationItemSelectedListener(this);
 
         sessionTime = 3000;

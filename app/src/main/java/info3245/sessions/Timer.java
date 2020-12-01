@@ -45,11 +45,10 @@ public class Timer extends Container {
     private static final String shortBreakKey = "shortBreakKey";
     private static final String longBreakKey = "longBreakKey";
 
-    private long snTimeDef = 20;
-    private long shrtBrkTimeDef = 2;
-    private long lngBrkTimeDef = 20;
+    private final long snTimeDef = 20;
+    private final long shrtBrkTimeDef = 2;
+    private final long lngBrkTimeDef = 20;
 
-    //Timer Code
     private  long startingTime;
     private  long focusTimeStart;
     private  long shortBreakTimeStart;
@@ -121,7 +120,6 @@ public class Timer extends Container {
             }
         });
         updateCountDownText();
-//Timer Code
 
     }
 
@@ -159,12 +157,10 @@ public class Timer extends Container {
                 if (focus) {
                     sessions_Usage_Today++;
                     updateUsageCount();
-                    Log.d("usage_Usage_Today", String.valueOf(usage_Usage_Today));
 
                     writeUsageData(Usage_Today, date_Usage_Today, usage_Usage_Today, sessions_Usage_Today, goal_Usage_Today);
                 }
 
-                Log.d("sessions_Usage_Today" , String.valueOf(sessions_Usage_Today));
                 mTimerRunning = false;
                 mPlay.setImageResource(R.drawable.ic_playbutton);
 
@@ -195,7 +191,6 @@ public class Timer extends Container {
         if (mTimerRunning) {
             pauseTimer();
         }
-        Log.d("resetTimer", String.valueOf(startingTime));
 
         setText();
         setTime();
@@ -229,18 +224,13 @@ public class Timer extends Container {
 
     }
 
-
     // TIMER DATA METHODS
 
     private void loadData()
     {
-//        focusTimeStart = startingTime = convertTime(getSettingsData(sessionsKey, snTimeDef));
-//        shortBreakTimeStart = convertTime(getSettingsData(shortBreakKey, shrtBrkTimeDef));
-//        longBreakTimeStart = convertTime(getSettingsData(longBreakKey, lngBrkTimeDef));
-
-        focusTimeStart = startingTime = 1000;
-        shortBreakTimeStart = 1000;
-        longBreakTimeStart = 1000;
+        focusTimeStart = startingTime = convertTime(getSettingsData(sessionsKey, snTimeDef));
+        shortBreakTimeStart = convertTime(getSettingsData(shortBreakKey, shrtBrkTimeDef));
+        longBreakTimeStart = convertTime(getSettingsData(longBreakKey, lngBrkTimeDef));
     }
 
     public long getSettingsData(String key, long defaultVal) {

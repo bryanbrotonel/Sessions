@@ -51,16 +51,7 @@ public class Usage extends Container {
 
         restoreUsageData();
         updateUsageData();
-
         displayUsageData();
-
-        SharedPreferences sharedPref = getSharedPreferences(Usage_Yesterday, Context.MODE_PRIVATE);
-
-        Log.d("Usage_Yesterday", String.valueOf(sharedPref.getAll()));
-
-        sharedPref = getSharedPreferences(Usage_Today, Context.MODE_PRIVATE);
-
-        Log.d("Usage_Today", String.valueOf(sharedPref.getAll()));
 
     }
 
@@ -90,10 +81,10 @@ public class Usage extends Container {
 
     private void updateUsageData() {
 
-        sharedPref = getSharedPreferences(Usage_1Day, Context.MODE_PRIVATE);
+        sharedPref = getSharedPreferences(Usage_Yesterday, Context.MODE_PRIVATE);
         String date = sharedPref.getString(Date, defaultString);
 
-//        if (!date.equals(defaultString) && date.equals(getYesterdayDate())) {
+        if (!date.equals(defaultString) && date.equals(getYesterdayDate())) {
 
             //TODO: Update new values
 
@@ -115,7 +106,7 @@ public class Usage extends Container {
             sessions_Usage_1Day = Integer.parseInt(getUsageData(Usage_Yesterday, Sessions));
             goal_Usage_1Day = Integer.parseInt(getUsageData(Usage_Yesterday, Goal));
 
-//        }
+        }
 
     }
 

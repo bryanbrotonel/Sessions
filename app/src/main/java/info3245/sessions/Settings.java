@@ -26,16 +26,16 @@ public class Settings extends Container{
     private static final String longBreakBtnKey = "longBreakBtnKey";
 
     // Default values for settings
-    private long snTimeDef = 20;
-    private long goalTimeDef = 4;
-    private long shrtBrkTimeDef = 2;
-    private long lngBrkTimeDef = 20;
+    private final long snTimeDef = 20;
+    private final long goalTimeDef = 4;
+    private final long shrtBrkTimeDef = 2;
+    private final long lngBrkTimeDef = 20;
 
     // Default values for settings radio buttons
-    private int snTimeBtnDef = R.id.sns20M;
-    private int goalTimeBtnDef = R.id.goal_4h;
-    private int shrtBrkTimeBtnDef = R.id.short_Brk2M;
-    private int lngBrkTimeBtnDef = R.id.long_Brk20M;
+    private final int snTimeBtnDef = R.id.sns20M;
+    private final int goalTimeBtnDef = R.id.goal_4h;
+    private final int shrtBrkTimeBtnDef = R.id.short_Brk2M;
+    private final int lngBrkTimeBtnDef = R.id.long_Brk20M;
 
     // Values for settings
     private long snTime = snTimeDef;
