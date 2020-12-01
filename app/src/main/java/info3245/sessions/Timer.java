@@ -1,5 +1,7 @@
 package info3245.sessions;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class Timer extends Container {
@@ -124,6 +127,16 @@ public class Timer extends Container {
     {
 
         mEndTime = System.currentTimeMillis() + timeRemaining;
+
+        Toast.makeText(Timer.this, "Your session has begun!",
+                Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(Timer.this, ReminderBroadcast.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(Timer.this,
+                0, intent, 0);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, mEndTime-500, pendingIntent);
 
         countDownTimer = new CountDownTimer(timeRemaining,1000) {
             @Override
