@@ -45,6 +45,7 @@ public class Timer extends Container {
 
     private static final String shortBreakKey = "shortBreakKey";
     private static final String longBreakKey = "longBreakKey";
+    public static final String sessionsKey = "sessionsKey";
 
     private final long snTimeDef = 20;
     private final long shrtBrkTimeDef = 2;

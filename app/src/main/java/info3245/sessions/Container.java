@@ -15,27 +15,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public abstract class Container extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    SharedPreferences sharedPref;
-
-    private static final String settingsPrefs = "Settings_Prefs" ;
-    public static final String sessionsKey = "sessionsKey";
-    private final long snTimeDef = 20;
-
     protected BottomNavigationView navigationView;
-
-    private long sessionTime, breakTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
 
-        sharedPref = getApplicationContext().getSharedPreferences(settingsPrefs, Context.MODE_PRIVATE);
-
         navigationView = findViewById(R.id.navigation);
         navigationView.setOnNavigationItemSelectedListener(this);
 
-        sessionTime = 3000;
     }
 
     // Updates navbar state on start
@@ -71,7 +60,7 @@ public abstract class Container extends AppCompatActivity implements BottomNavig
         return true;
     }
 
-    //
+    // Updates navigation bar state
     private void updateNavigationBarState() {
         int actionId = getBottomNavigationMenuItemId();
         selectBottomNavigationBarItem(actionId);
